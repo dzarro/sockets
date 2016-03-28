@@ -25,21 +25,17 @@ if ~(fstat(ClientLUN)).open then return
 
 status=File_Poll_Input(ClientLUN, Timeout = .01d)
 
-if status then sockhttp,ClientLUN 
+if status then begin
+ command=""
+ dsize=lonarr(6)
+ readu,ClientLun,dsize
+ data=make_array(size=dsize)
+ readu,ClientLun,data 
+ readf,Clientlun,command
+ status=execute(command)
+endif 
 
 !null=Timer.Set(.1, "ServerCallback", ClientLUN)
-
-;
-; command=""
-; dsize=lonarr(6)
-; readu,ClientLun,dsize
-; data=make_array(size=dsize)
-; readu,ClientLun,data 
-; readf,Clientlun,command
-; status=execute(command)
-;endif 
-
-;!null=Timer.Set(.1, "ServerCallback", ClientLUN)
 return & end
 
 ;---------------------------------------------------------
