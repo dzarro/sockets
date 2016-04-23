@@ -1,9 +1,11 @@
 pro SockHTTP,lun
 
-;-- set a catch for errors
+;-- Windows automatically appeands a carriage return, otherwise had to add it
 
 cr=''
-if os_family() ne 'Windows' then cr=string(13b)        
+if !version.os_family ne 'Windows' then cr=string(13b)   
+ 
+;-- set a catch for errors
 
 error=0
 catch, error
@@ -26,11 +28,11 @@ endwhile
 nhead=n_elements(header)
 if nhead gt 1 then value=header[1:nhead-1] else value=''
 
-;-- bail if not GET 
+;-- bail if not GET or HEAD
 
 request=strsplit(value[0],' ',/extract)
 print,request
-if (request[0] ne 'GET') && (request[0] eq 'HEAD') then goto,cancel
+if (request[0] ne 'GET') && (request[0] ne 'HEAD') then goto,cancel
 
 ;-- check if requested file exists in current directory and get its size.
 ;-- bail if not found
@@ -46,8 +48,8 @@ if bsize eq 0 then begin
  return
 endif
 
+;-- if HEAD then just return with status header
 ;-- if GET then send requested file by reading it and writing bytes to socket
-;   if HEAD then just return with status header
 
 printf,lun,'HTTP/1.1 200 OK'+cr
 printf,lun,'Content-Length: '+strtrim(bsize,2)+cr
