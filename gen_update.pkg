@@ -1,0 +1,15 @@
+
+package=_solarsoft_gen
+   comment=ssw_upgrade__solarsoft_gen
+   site=sohoftp.nascom.nasa.gov
+   remote_user=anonymous
+   remote_password=zarro@moat
+   remote_dir=/solarsoft/gen
+   local_dir=C:\Users\dmzar\solarsoft\gen
+   do_deletes=true
+   passive_ftp=true
+   max_delete_files=99%
+   max_delete_dirs=99%
+   exclude_patt=(:\?|fund_lib\/sdac|mirror_2.8|idl_fix|perl|java|mirror)
+   use_timelocal=false
+

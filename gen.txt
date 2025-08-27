@@ -1,0 +1,19 @@
+
+
+package=gen
+   site=sohoftp.nascom.nasa.gov
+   remote_dir=/solarsoft/gen
+   local_dir=$SSW\gen
+   exclude_patt=gen/bin|gen/idl/ana|gen/doc|gen/idl_fix|gen/mirror|gen/idl_test|gen/exe|gen/java|gen/idl_rpc|gen/dll|gen/dlm|gen/perl|gen/idl_external|fund_lib/sdac|fund_lib/jhuapl|\.tar$|\.gz$|~$|\#$
+
+#   site=soho.nascom.nasa.gov
+#  remote_dir=/solarsoft/packages/helioviewer/idl
+#  local_dir=$SSW\packages\helioviewer\idl
+#  exclude_patt=\.png$
+   
+
+#package=eis
+#   site=sohoftp.nascom.nasa.gov
+#   remote_dir=/solarsoft/hinode/eis/idl
+#   local_dir=$SSW/hinode/eis/idl
+  
